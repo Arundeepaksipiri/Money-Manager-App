@@ -1,0 +1,30 @@
+/* Write your CSS here */
+.image-size {
+  width: 60px;
+  margin-right: 20px;
+  height: 60px;
+  align-self: center;
+}
+.list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #ecfccb;
+  border: 2px solid #84cc16;
+  padding: 20px;
+  margin-right: 20px;
+  width: 23vw;
+  border-radius: 15px;
+}
+.back-green {
+  border: 2px solid #84cc16;
+  background-color: #ecfccb;
+}
+.back-blue {
+  border: 2px solid #06b6d4;
+  background-color: #cffafe;
+}
+.back-violet {
+  border: 2px solid #7c3aed;
+  background-color: #ede9fe;
+}
