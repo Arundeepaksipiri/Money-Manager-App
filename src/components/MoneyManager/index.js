@@ -40,7 +40,7 @@ class MoneyManager extends Component {
     historyDetails: [],
     titleInput: '',
     amountInput: '',
-    sourceInput: '',
+    sourceInput: transactionTypeOptions[0].optionId,
     balance: 0,
     income: 0,
     expenses: 0,
@@ -53,7 +53,10 @@ class MoneyManager extends Component {
       id: uuidv4(),
       titleInput,
       amountInput,
-      sourceInput,
+      sourceInput:
+        sourceInput === transactionTypeOptions[0].optionId
+          ? transactionTypeOptions[0].displayText
+          : transactionTypeOptions[1].displayText,
     }
     if (sourceInput === 'INCOME') {
       this.setState(prevState => ({
@@ -70,7 +73,7 @@ class MoneyManager extends Component {
     this.setState(prevState => ({
       historyDetails: [...prevState.historyDetails, newHistory],
       amountInput: '',
-      sourceInput: '',
+      sourceInput: transactionTypeOptions[0].optionId,
       titleInput: '',
     }))
   }
@@ -88,7 +91,7 @@ class MoneyManager extends Component {
   }
 
   onDeleteHistory = (id, amountInput, sourceInput) => {
-    if (sourceInput === 'INCOME') {
+    if (sourceInput === 'Income') {
       this.setState(prevState => ({
         balance: prevState.balance - parseInt(amountInput),
         income: prevState.income - parseInt(amountInput),
@@ -166,7 +169,7 @@ class MoneyManager extends Component {
                 onChange={this.onChangeSource}
               >
                 {transactionTypeOptions.map(eachType => (
-                  <option value={eachType.optionId}>
+                  <option key={eachType.optionId} value={eachType.optionId}>
                     {eachType.displayText}
                   </option>
                 ))}
@@ -176,13 +179,13 @@ class MoneyManager extends Component {
           </div>
           <div className="history-container">
             <h1>History</h1>
-            <div className="list-container">
-              <div className="history-items">
+            <ul className="list-container">
+              <li className="history-items">
                 <p className="each-list">Title</p>
                 <p className="each-list">Amount</p>
                 <p className="each-list">Type</p>
-              </div>
-              <ul className="item-pays">
+              </li>
+              <li className="item-pays">
                 {historyDetails.map(eachDetail => (
                   <TransactionItem
                     History={eachDetail}
@@ -190,8 +193,8 @@ class MoneyManager extends Component {
                     DeleteHistory={this.onDeleteHistory}
                   />
                 ))}
-              </ul>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

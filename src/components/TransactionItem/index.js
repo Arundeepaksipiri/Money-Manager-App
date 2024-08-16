@@ -8,7 +8,7 @@ const TransactionItem = props => {
     DeleteHistory(id, amountInput, sourceInput)
   }
   return (
-    <>
+    <ul>
       <hr className="line-horizontal" />
       <li className="list-item-transaction">
         <p className="each-one-item">{titleInput}</p>
@@ -22,7 +22,7 @@ const TransactionItem = props => {
           />
         </button>
       </li>
-    </>
+    </ul>
   )
 }
 export default TransactionItem
